@@ -1,6 +1,7 @@
 package com.higgsup.java8.stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,5 +51,33 @@ public class StreamApp {
         Optional<String> firstNameWithD = names4.filter(i -> i.startsWith("D")).findFirst();
 
         firstNameWithD.ifPresent(String -> System.out.println(firstNameWithD.get()));
+
+        //distinct
+        List<Integer> numberList = Arrays.asList(1, 2, 3, 3, 5, 1, 7, 2);
+        System.out.println("Before distinct: " + numbers);
+
+        List<Integer> results = numberList.stream().distinct().collect(Collectors.toList());
+        System.out.println("Result of distinct: " + results);
+
+        //limit
+        List<Integer> numberList1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+
+        List<Integer> resultList = numberList1.stream().filter(i -> {
+            System.out.println("Filter: " + i);
+            return i > 4;
+        }).limit(3).collect(Collectors.toList());
+
+        System.out.println("Result of limit: " + resultList);
+
+        //skip
+
+        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> resultList1 = numbers1.stream().filter(i -> {
+            System.out.println("Filter: " + i);
+            return i > 4;
+        }).skip(2).collect(Collectors.toList());
+
+        System.out.println("Result of skip: " + resultList1);
+
     }
 }
